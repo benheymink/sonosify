@@ -13,8 +13,11 @@ namespace Sonosify
 {
     public class SonosLocator
     {
+        // SSDP Multicast address: (See http://en.wikipedia.org/wiki/Simple_Service_Discovery_Protocol )
         readonly IPAddress multicastAddress = IPAddress.Parse("239.255.255.250");
         const int multicastPort = 1900;
+
+        // Time to wait for a response from multicast discovery
         const int searchTimeOut = 3000;
 
         const string messageHeader = "M-SEARCH * HTTP/1.1";
@@ -32,6 +35,7 @@ namespace Sonosify
                           messageMx,
                           messageSt));
 
+        // The list of devices we'll discover
         public ObservableCollection<SonosDevice> Devices { get; set; }
 
         public SonosLocator()
@@ -41,6 +45,7 @@ namespace Sonosify
 
         public void CreateSonosListener()
         {
+            // SSDP uses UDP transport:
             using (var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
             {
                 socket.Bind(new IPEndPoint(IPAddress.Any, 1901));
@@ -96,6 +101,7 @@ namespace Sonosify
                     EndPoint ep = new IPEndPoint(IPAddress.Any, multicastPort);
                     socket.ReceiveFrom(response, ref ep);
                     var str = Encoding.UTF8.GetString(response);
+
                     var location = GetLocation(str);
                     if (!string.IsNullOrEmpty(location))
                         Devices.Add(new SonosDevice() { Location = location });
@@ -103,7 +109,7 @@ namespace Sonosify
             }
             catch
             {
-                //TODO handle exception for when connection closes
+                // TODO: Handle exception from when connection is closed? It's ignored for now.
             }
 
         }
