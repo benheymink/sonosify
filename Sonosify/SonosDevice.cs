@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sonosify
 {
-    class SonosDevice
+    public class SonosDevice
     {
         public string Location { get; set; }
         public string Name { get; set; }

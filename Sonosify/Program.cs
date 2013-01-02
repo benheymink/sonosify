@@ -10,7 +10,15 @@ namespace Sonosify
     {
         static void Main(string[] args)
         {
-            // TODO
+            SonosLocator locator = new SonosLocator();
+            locator.CreateSonosListener();
+
+            foreach (var device in locator.Devices)
+            {
+                Console.WriteLine(device.Location);
+            }
+
+            Console.ReadLine();
         }
     }
 }
