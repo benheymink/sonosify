@@ -15,16 +15,18 @@ namespace Sonosify
     {
         // SSDP Multicast address: (See http://en.wikipedia.org/wiki/Simple_Service_Discovery_Protocol )
         readonly IPAddress multicastAddress = IPAddress.Parse("239.255.255.250");
+        
+        // SSDP multicast port
         const int multicastPort = 1900;
 
         // Time to wait for a response from multicast discovery
         const int searchTimeOut = 3000;
 
-        const string messageHeader = "M-SEARCH * HTTP/1.1";
-        const string messageHost = "HOST: 239.255.255.250:1900";
-        const string messageMan = "MAN: \"ssdp:discover\"";
-        const string messageMx = "MX: 8";
-        const string messageSt = "ST: urn:schemas-upnp-org:device:ZonePlayer:1";
+        const string messageHeader  = "M-SEARCH * HTTP/1.1";                            // M-SEARCH is the method
+        const string messageHost    = "HOST: 239.255.255.250:1900";                     // Host
+        const string messageMan     = "MAN: \"ssdp:discover\"";                         // SSDP Discover
+        const string messageMx      = "MX: 8";                                          // MX Delta to prevent response flooding
+        const string messageSt      = "ST: urn:schemas-upnp-org:device:ZonePlayer:1";   // Service type we wish to discover
 
         readonly byte[] broadcastMessage = Encoding.UTF8.GetBytes(
             string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{0}",
