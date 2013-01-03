@@ -11,18 +11,33 @@ Still to do:
 * Still some methods to add:
 
 Queue  -DONE!
+
 Play  -DONE!
+
 Pause  -DONE!
+
 Stop  -DONE!
+
 Next  -DONE!
+
 Previous  -DONE!
+
 Mute  -DONE!
+
 Volume
+
 Bass
+
 Treble
+
 Loudness
+
 Partymode (Add all speakers together)
+
 Switch to Line in
+
 Status Light
+
 Get Track Info
+
 Get Speaker Info
