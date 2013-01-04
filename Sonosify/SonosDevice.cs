@@ -14,6 +14,7 @@ namespace Sonosify
         private const string RENDERING_ENDPOINT = "/MediaRenderer/RenderingControl/Control";
         private const string DEVICE_ENDPOINT = "/DeviceProperties/Control";
 
+
         /// <summary>
         /// The location (IP address) of the device
         /// </summary>
